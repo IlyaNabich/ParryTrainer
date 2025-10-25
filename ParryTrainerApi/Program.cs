@@ -1,12 +1,13 @@
+using DataAccess;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
-builder.Services.AddDbContext<DbContext>(
+builder.Services.AddDbContext<ParryTrainerDbContext>(
     options =>
     {
-        options.UseNpgsql(builder.Configuration.GetConnectionString(nameof(DbContext)));
+        options.UseNpgsql(builder.Configuration.GetConnectionString(nameof(ParryTrainerDbContext)));
     });
 
 

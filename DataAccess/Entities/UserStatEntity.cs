@@ -1,6 +1,4 @@
-﻿using DataAccess.Entity;
-
-namespace DataAccess.Entities;
+﻿namespace DataAccess.Entities;
 
 public class UserStatEntity
 {

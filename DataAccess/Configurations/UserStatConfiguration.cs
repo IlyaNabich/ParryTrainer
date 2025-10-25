@@ -11,5 +11,9 @@ public class UserStatConfiguration : IEntityTypeConfiguration<UserStatEntity>
         builder
             .HasIndex(x => x.UserId)
             .IsUnique();
+        
+        // Дополнительно можно добавить:
+        builder
+            .HasKey(x => x.UserStatId); // Если это первичный ключ
     }
 }
