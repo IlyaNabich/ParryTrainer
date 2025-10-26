@@ -1,6 +1,8 @@
-﻿namespace DataAccess.Entities;
+﻿using DataAccess.Entities;
 
-public class UserStatEntity
+namespace Core.Models;
+
+public class UserStat
 {
     public Guid UserStatId { get; set; }
     

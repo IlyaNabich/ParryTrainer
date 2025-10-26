@@ -11,4 +11,6 @@ public class UserEntity
     public string Password { get; set; }
     
     public UserStatEntity UserStat { get; set; }
+    
+    
 }

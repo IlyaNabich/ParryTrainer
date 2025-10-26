@@ -4,6 +4,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParryTrainerApi", "ParryTra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{BD73E3A1-DDC7-4FC5-B267-2FAFD6D1F5F3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{62D9580B-8CB1-492D-AE1B-97940184FCFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{E0166278-DC49-434A-8FE5-95569C0432F9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +22,13 @@ Global
 		{BD73E3A1-DDC7-4FC5-B267-2FAFD6D1F5F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD73E3A1-DDC7-4FC5-B267-2FAFD6D1F5F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD73E3A1-DDC7-4FC5-B267-2FAFD6D1F5F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62D9580B-8CB1-492D-AE1B-97940184FCFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62D9580B-8CB1-492D-AE1B-97940184FCFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62D9580B-8CB1-492D-AE1B-97940184FCFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62D9580B-8CB1-492D-AE1B-97940184FCFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0166278-DC49-434A-8FE5-95569C0432F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0166278-DC49-434A-8FE5-95569C0432F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0166278-DC49-434A-8FE5-95569C0432F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0166278-DC49-434A-8FE5-95569C0432F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

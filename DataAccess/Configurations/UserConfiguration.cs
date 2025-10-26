@@ -9,7 +9,7 @@ public class UserConfiguration: IEntityTypeConfiguration<UserEntity>
     public void Configure(EntityTypeBuilder<UserEntity> builder)
     {
         builder
-            .HasKey(x => x.UserId); // Указываем первичный ключ
+            .HasKey(x => x.UserId);
         
         builder
             .HasOne(x => x.UserStat)
