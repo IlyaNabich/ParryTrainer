@@ -27,6 +27,7 @@ public class User
     {
         var error = string.Empty;
         var userId = Guid.NewGuid();
+        userStat = new UserStat { UserId = userId };
         var user = new User(userId, userName, login, password, userStat);
         return (user, error);
     }

@@ -4,8 +4,6 @@ namespace Core.Models;
 
 public class UserStat
 {
-    public Guid UserStatId { get; set; }
-    
     public Guid UserId { get; set; }
 
     public int Score { get; set; } = 0;

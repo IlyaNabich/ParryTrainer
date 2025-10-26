@@ -2,7 +2,6 @@
 
 public class UserStatEntity
 {
-    public Guid UserStatId { get; set; }
     
     public Guid UserId { get; set; }
 

@@ -9,10 +9,12 @@ public class UserStatConfiguration : IEntityTypeConfiguration<UserStatEntity>
     public void Configure(EntityTypeBuilder<UserStatEntity> builder)
     {
         builder
-            .HasIndex(x => x.UserId)
-            .IsUnique();
-        
+            .HasKey(x => x.UserId); 
+    
         builder
-            .HasKey(x => x.UserStatId); 
+            .HasOne(us => us.UserEntity)
+            .WithOne(u => u.UserStat)
+            .HasForeignKey<UserStatEntity>(us => us.UserId)
+            .IsRequired();
     }
 }
