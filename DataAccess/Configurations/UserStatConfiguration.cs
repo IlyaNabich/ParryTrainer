@@ -4,17 +4,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DataAccess.Configurations;
 
-public class UserStatConfiguration : IEntityTypeConfiguration<UserStatEntity>
+public class UserStatConfiguration : IEntityTypeConfiguration<UsersStatsEntity>
 {
-    public void Configure(EntityTypeBuilder<UserStatEntity> builder)
+    public void Configure(EntityTypeBuilder<UsersStatsEntity> builder)
     {
         builder
-            .HasKey(x => x.UserId); 
-    
-        builder
-            .HasOne(us => us.UserEntity)
-            .WithOne(u => u.UserStat)
-            .HasForeignKey<UserStatEntity>(us => us.UserId)
-            .IsRequired();
+            .HasKey(e => e.UserId);
+        
     }
 }

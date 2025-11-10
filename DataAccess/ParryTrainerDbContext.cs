@@ -5,8 +5,10 @@ namespace DataAccess;
 
 public partial class ParryTrainerDbContext(DbContextOptions<ParryTrainerDbContext> options) : DbContext(options)
 {
-    public DbSet<UserEntity> Users { get; set; }
-    public DbSet<UserStatEntity> UserStats { get; set; }
+    public DbSet<UsersEntity> Users { get; set; }
+    public DbSet<UsersStatsEntity> UserStats { get; set; }
+    public DbSet<UsersProfilesEntity> UserProfiles { get; set; }
+    public DbSet<CommentsEntity> Comments { get; set; }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
