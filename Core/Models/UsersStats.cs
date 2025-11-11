@@ -6,17 +6,6 @@ public class UsersStats
     private UsersStats(Guid userId)
     {
         UserId = userId;
-        Score = 0;
-        BestPlacement = 0;
-        ActualPlacement = 0;
-        BestMode = "Unknown";
-        FavoriteMode = "Unknown";
-        AverageTimeReaction = 0;
-        BestTimeReaction = 0;
-        NumberSuccessParry = 0;
-        ParryStreak = 0;
-        BestParryStreak = 0;
-
     }
 
     public Guid UserId { get; }

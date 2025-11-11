@@ -12,9 +12,9 @@ public class UsersStatsService (IUsersStatsRepository usersStatsRepository) : IU
         return await _usersStatsRepository.Get(userId);
     }
 
-    public async Task<Guid> CreateUserStats(Guid userId)
+    public async Task<Guid> CreateUserStats(UsersStats userStats)
     {
-        return await _usersStatsRepository.Create(userId);
+        return await _usersStatsRepository.Create(userStats);
     }
 
     public async Task<Guid> UpdateUserStats(Guid userId, UsersStats userStats)
