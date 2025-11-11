@@ -5,25 +5,25 @@ public class UsersStatsEntity
     
     public Guid UserId { get; set; }
 
-    public int Score { get; set; }
+    public int Score { get; set; } = 0;
 
-    public int? BestPlacement { get; set; }
-    
-    public int? ActualPlacement { get; set; }
-    
-    public string BestMode { get; set; }
-    
-    public string FavoriteMode { get; set; }
+    public int? BestPlacement { get; set; } = 0;
 
-    public float? AverageTimeReaction {get; set; }
-    
-    public float? BestTimeReaction {get; set; }
+    public int? ActualPlacement { get; set; } = 0;
 
-    public int? NumberSuccessParry { get; set; }
+    public string BestMode { get; set; } = "Unknown";
     
-    public int? ParryStreak { get; set; }
+    public string FavoriteMode { get; set; } =  "Unknown";
 
-    public int? BestParryStreak { get; set; }
+    public float? AverageTimeReaction { get; set; } = 0;
+
+    public float? BestTimeReaction { get; set; } = 0;
+
+    public int? NumberSuccessParry { get; set; } = 0;
+
+    public int? ParryStreak { get; set; } = 0;
+
+    public int? BestParryStreak { get; set; } = 0;
     
     public UsersEntity UsersEntity { get; set; }
 }

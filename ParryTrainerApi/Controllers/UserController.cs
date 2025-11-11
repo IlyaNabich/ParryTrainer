@@ -56,7 +56,7 @@ public class UserController (IUserService userService, IUsersProfilesService use
         }
 
         var users = await _userService.CreateUser(user);
-        await _usersStatsService.CreateUserStats(id);
+        await _usersStatsService.CreateUserStats(stat);
         await _usersProfilesService.CreateUserProfileAsync(profile);
         return Ok(users);
     }

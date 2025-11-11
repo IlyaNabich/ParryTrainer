@@ -11,7 +11,6 @@ public class UsersRepository (ParryTrainerDbContext context) : IUsersRepository
 {
     private readonly ParryTrainerDbContext _context = context;
     public async Task<List<Users>> Get()
-    
     {
         var userEntities = await _context.Users
             .AsNoTracking()
@@ -53,7 +52,7 @@ public class UsersRepository (ParryTrainerDbContext context) : IUsersRepository
     {
         await _context.Users
             .Where(x => x.UserId == userId)
-            .ExecuteDeleteAsync<UsersEntity>();
+            .ExecuteDeleteAsync();
         
         return userId;
     }

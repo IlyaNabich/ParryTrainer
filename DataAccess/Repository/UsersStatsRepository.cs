@@ -1,5 +1,6 @@
 ﻿using Core.Abstractions;
 using Core.Models;
+using DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Repository;
@@ -16,11 +17,16 @@ public class UsersStatsRepository (ParryTrainerDbContext context): IUsersStatsRe
         return userStats;
     }
 
-    public async Task<Guid> Create(Guid userId)
+    public async Task<Guid> Create(UsersStats userStats)
     {
-        await _context.AddAsync(userId);
+        var userStatsEntity = new UsersStatsEntity()
+        {
+            UserId = userStats.UserId,
+        };
+        await _context.UserStats.AddAsync(userStatsEntity);
+        await _context.SaveChangesAsync();
         
-        return userId;
+        return userStats.UserId;
     }
 
     public async Task<Guid> Update(Guid userId, UsersStats usersStats)
