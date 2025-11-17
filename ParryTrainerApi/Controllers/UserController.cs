@@ -1,4 +1,5 @@
-﻿using Core.Abstractions;
+﻿using Application.Auth;
+using Core.Abstractions;
 using Core.Models;
 using Core.Interfaces;
 using DataAccess.Repository;
@@ -10,16 +11,12 @@ namespace ParryTrainerApi.Controllers;
 [ApiController]
 [Route("[controller]")]
 
-public class UserController (IUserService userService, IUsersProfilesService usersProfilesService, IUsersStatsService usersStatsService) : ControllerBase
+public class UserController (IUserService userService, IUsersProfilesService usersProfilesService, IUsersStatsService usersStatsService, IPasswordHasher passwordHasher) : ControllerBase
 {
-    private readonly IUserService _userService = userService;
-    private readonly IUsersProfilesService _usersProfilesService = usersProfilesService;
-    private readonly IUsersStatsService _usersStatsService = usersStatsService;
-
     [HttpGet]
     public async Task<ActionResult<UserResponse>> GetUser()
     {
-        var user = await _userService.GetAllUsers();
+        var user = await userService.GetAllUsers();
 
         var response = user.Select(x => new UserResponse(x.UserId, x.UserName, x.LastOnlineDate, x.RegDate));
         
@@ -34,7 +31,7 @@ public class UserController (IUserService userService, IUsersProfilesService use
             id,
             request.Username,
             request.Login,
-            request.Password,
+            passwordHasher.Generate(request.Password),
             DateTime.UtcNow, 
             DateTime.UtcNow
             );
@@ -55,16 +52,16 @@ public class UserController (IUserService userService, IUsersProfilesService use
             return BadRequest(error);
         }
 
-        var users = await _userService.CreateUser(user);
-        await _usersStatsService.CreateUserStats(stat);
-        await _usersProfilesService.CreateUserProfileAsync(profile);
+        var users = await userService.CreateUser(user);
+        await usersStatsService.CreateUserStats(stat);
+        await usersProfilesService.CreateUserProfileAsync(profile);
         return Ok(users);
     }
 
     [HttpPut]
     public async Task<ActionResult> UpdateUser([FromBody] UserRequest request, Guid userId)
     {
-        var user = await _userService.UpdateUser(userId, request.Login, request.Password, request.Username);
+        var user = await userService.UpdateUser(userId, request.Login, request.Password, request.Username);
         
         return Ok(user);
     }
@@ -72,7 +69,7 @@ public class UserController (IUserService userService, IUsersProfilesService use
     [HttpDelete]
     public async Task<ActionResult> DeleteUser(Guid userId)
     {
-        var user = await _userService.DeleteUser(userId);
+        var user = await userService.DeleteUser(userId);
         
         return Ok(user);
     }

@@ -7,11 +7,11 @@ namespace DataAccess.Repository;
 
 public class UsersProfilesRepository (ParryTrainerDbContext context): IUsersProfilesRepository
 {
-    private readonly ParryTrainerDbContext _context = context;
+    
     
     public async Task<UsersProfiles> GetUserProfileAsync(Guid userId)
     {
-        var userProfileEntity = await _context.UserProfiles.AsNoTracking().FirstOrDefaultAsync(x => x.UserId == userId);
+        var userProfileEntity = await context.UserProfiles.AsNoTracking().FirstOrDefaultAsync(x => x.UserId == userId);
         
         var userProfile = UsersProfiles.CreateProfile(userProfileEntity.UserId, userProfileEntity.UserName,
             userProfileEntity.FirstName, userProfileEntity.LastName, userProfileEntity.Age, userProfileEntity.Links,
@@ -35,15 +35,15 @@ public class UsersProfilesRepository (ParryTrainerDbContext context): IUsersProf
             Description = usersProfiles.Description
         };
         
-        await _context.UserProfiles.AddAsync(userProfileEntity);
-        await _context.SaveChangesAsync();
+        await context.UserProfiles.AddAsync(userProfileEntity);
+        await context.SaveChangesAsync();
         
         return usersProfiles.UserId;
     }
 
     public async Task<UsersProfiles> UpdateUserProfileAsync(UsersProfiles usersProfiles)
     {
-        await _context.UserProfiles
+        await context.UserProfiles
             .Where(x => x.UserId == usersProfiles.UserId)
             .ExecuteUpdateAsync(x => x
                 .SetProperty(a => a.FirstName, usersProfiles.FirstName)

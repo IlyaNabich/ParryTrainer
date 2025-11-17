@@ -1,8 +1,10 @@
+using Application.Auth;
 using Application.Services;
 using Core.Abstractions;
 using Core.Interfaces;
 using DataAccess;
 using DataAccess.Repository;
+using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -12,6 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 builder.Services.AddScoped<IUsersProfilesRepository, UsersProfilesRepository>();
 builder.Services.AddScoped<IUsersProfilesService, UsersProfilesService>();
 builder.Services.AddScoped<IUsersStatsRepository, UsersStatsRepository>();
