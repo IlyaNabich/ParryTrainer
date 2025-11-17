@@ -7,10 +7,9 @@ namespace DataAccess.Repository;
 
 public class UsersStatsRepository (ParryTrainerDbContext context): IUsersStatsRepository
 {
-    private readonly ParryTrainerDbContext _context = context;
     public async Task<UsersStats> Get(Guid userId)
     {
-        var usersStatsEntity = await _context.UserStats.FirstOrDefaultAsync(u => u.UserId == userId);
+        var usersStatsEntity = await context.UserStats.FirstOrDefaultAsync(u => u.UserId == userId);
         
         var userStats = UsersStats.CreateStats(usersStatsEntity.UserId);
         
@@ -23,15 +22,15 @@ public class UsersStatsRepository (ParryTrainerDbContext context): IUsersStatsRe
         {
             UserId = userStats.UserId,
         };
-        await _context.UserStats.AddAsync(userStatsEntity);
-        await _context.SaveChangesAsync();
+        await context.UserStats.AddAsync(userStatsEntity);
+        await context.SaveChangesAsync();
         
         return userStats.UserId;
     }
 
     public async Task<Guid> Update(Guid userId, UsersStats usersStats)
     {
-        await _context.UserStats.Where(u => u.UserId == userId)
+        await context.UserStats.Where(u => u.UserId == userId)
             .ExecuteUpdateAsync(a => a
                 .SetProperty(m => m.Score, usersStats.Score)
                 .SetProperty(l => l.BestPlacement, usersStats.BestPlacement)
@@ -49,7 +48,7 @@ public class UsersStatsRepository (ParryTrainerDbContext context): IUsersStatsRe
 
     public async Task <Guid> Clear(Guid userId)
     {
-        await _context.UserStats.Where(u => u.UserId == userId).ExecuteDeleteAsync();
+        await context.UserStats.Where(u => u.UserId == userId).ExecuteDeleteAsync();
         
         return userId;
     }

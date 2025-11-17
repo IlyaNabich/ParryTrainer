@@ -9,10 +9,9 @@ namespace DataAccess.Repository;
 
 public class UsersRepository (ParryTrainerDbContext context) : IUsersRepository
 {
-    private readonly ParryTrainerDbContext _context = context;
     public async Task<List<Users>> Get()
     {
-        var userEntities = await _context.Users
+        var userEntities = await context.Users
             .AsNoTracking()
             .ToListAsync();
         var user = userEntities
@@ -32,15 +31,15 @@ public class UsersRepository (ParryTrainerDbContext context) : IUsersRepository
             RegDate = users.RegDate,
             LastOnlineDate = users.LastOnlineDate
         };
-        await _context.Users.AddAsync(userEntity);
-        await _context.SaveChangesAsync();
+        await context.Users.AddAsync(userEntity);
+        await context.SaveChangesAsync();
         
         return users.UserId;
     }
 
     public async Task<Guid> Update(Guid userId, string login, string password, string userName)
     {
-        await _context.Users.Where(x => x.UserId == userId).ExecuteUpdateAsync(s => s
+        await context.Users.Where(x => x.UserId == userId).ExecuteUpdateAsync(s => s
             .SetProperty(x => x.Login, login)
             .SetProperty(x => x.Password, password)
             .SetProperty(x => x.UserName, userName));
@@ -50,7 +49,7 @@ public class UsersRepository (ParryTrainerDbContext context) : IUsersRepository
 
     public async Task<Guid> Delete(Guid userId)
     {
-        await _context.Users
+        await context.Users
             .Where(x => x.UserId == userId)
             .ExecuteDeleteAsync();
         

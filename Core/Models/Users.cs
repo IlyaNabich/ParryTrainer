@@ -1,10 +1,11 @@
-﻿using Core.Validations;
+﻿using System.CodeDom.Compiler;
+using System.Reflection.Metadata.Ecma335;
+using Core.Validations;
 
 namespace Core.Models;
 
 public class Users
 {
-    
     private Users(Guid userId, string userName, string login, string password, DateTime regDate, DateTime lastOnlineDate)
     {
         UserId = userId;
