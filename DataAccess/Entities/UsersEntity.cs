@@ -10,9 +10,9 @@ public class UsersEntity
     
     public string Password { get; set; }
     
-    public UsersProfilesEntity UsersProfilesEntity { get; set; }
+    public ProfilesEntity ProfilesEntity { get; set; }
     
-    public UsersStatsEntity UsersStatsEntity { get; set; }
+    public StatsEntity StatsEntity { get; set; }
     
     public DateTime RegDate { get; set; }
     

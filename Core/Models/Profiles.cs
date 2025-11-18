@@ -1,8 +1,8 @@
 ﻿namespace Core.Models;
 
-public class UsersProfiles
+public class Profiles
 {
-    private UsersProfiles(Guid userId, string userName, string firstName, string lastName, string age, string links, string region, string country, string description)
+    private Profiles(Guid userId, string userName, string firstName, string lastName, string age, string links, string region, string country, string description)
     {
         UserId = userId;
         UserName = userName;
@@ -32,10 +32,10 @@ public class UsersProfiles
     
     public string Description {  get; }
 
-    public static UsersProfiles CreateProfile(Guid userId, string userName, string firstName, string lastName, 
+    public static Profiles CreateProfile(Guid userId, string userName, string firstName, string lastName, 
         string age, string links, string region, string country, string description)
     {
-       return new UsersProfiles(userId, userName,  firstName, lastName, age, links, region, country, description);
+       return new Profiles(userId, userName,  firstName, lastName, age, links, region, country, description);
     }
     
 }

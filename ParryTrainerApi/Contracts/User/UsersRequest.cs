@@ -1,6 +1,6 @@
 ﻿namespace ParryTrainerApi.Contracts.User;
 
-public record UserRequest(
+public record UsersRequest(
     string Username, 
     string Login, 
     string Password

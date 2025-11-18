@@ -11,20 +11,20 @@ namespace ParryTrainerApi.Controllers;
 [ApiController]
 [Route("[controller]")]
 
-public class UserController (IUserService userService, IUsersProfilesService usersProfilesService, IUsersStatsService usersStatsService, IPasswordHasher passwordHasher) : ControllerBase
+public class UserController (IUserService userService, IProfilesService profilesService, IStatsService statsService, IPasswordHasher passwordHasher) : ControllerBase
 {
     [HttpGet]
-    public async Task<ActionResult<UserResponse>> GetUser()
+    public async Task<ActionResult<UsersResponse>> GetUser()
     {
         var user = await userService.GetAllUsers();
 
-        var response = user.Select(x => new UserResponse(x.UserId, x.UserName, x.LastOnlineDate, x.RegDate));
+        var response = user.Select(x => new UsersResponse(x.UserId, x.UserName, x.LastOnlineDate, x.RegDate));
         
         return Ok(response);
     }
 
     [HttpPost]
-    public async Task<ActionResult<UserResponse>> CreateUser([FromBody] UserRequest request)
+    public async Task<ActionResult<UsersResponse>> CreateUser([FromBody] UsersRequest request)
     {
         var id = Guid.NewGuid();
         var (user,error) = Users.CreateUsers(
@@ -35,7 +35,7 @@ public class UserController (IUserService userService, IUsersProfilesService use
             DateTime.UtcNow, 
             DateTime.UtcNow
             );
-        var profile = UsersProfiles.CreateProfile(
+        var profile = Profiles.CreateProfile(
             id,
             request.Username,
             "Unknown",
@@ -46,20 +46,20 @@ public class UserController (IUserService userService, IUsersProfilesService use
             "Unknown",
             "Unknown"
         );
-        var stat = UsersStats.CreateStats(id);
+        var stat = Stats.CreateStats(id);
         if (string.IsNullOrEmpty(error))
         {
             return BadRequest(error);
         }
 
         var users = await userService.CreateUser(user);
-        await usersStatsService.CreateUserStats(stat);
-        await usersProfilesService.CreateUserProfileAsync(profile);
+        await statsService.CreateUserStats(stat);
+        await profilesService.CreateUserProfileAsync(profile);
         return Ok(users);
     }
-
+    
     [HttpPut]
-    public async Task<ActionResult> UpdateUser([FromBody] UserRequest request, Guid userId)
+    public async Task<ActionResult> UpdateUser([FromBody] UsersRequest request, Guid userId)
     {
         var user = await userService.UpdateUser(userId, request.Login, request.Password, request.Username);
         

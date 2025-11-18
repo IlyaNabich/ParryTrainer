@@ -1,6 +1,6 @@
 ﻿namespace DataAccess.Entities;
 
-public class UsersStatsEntity
+public class StatsEntity
 {
     
     public Guid UserId { get; set; }

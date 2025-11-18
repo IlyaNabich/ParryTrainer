@@ -1,6 +1,6 @@
 ﻿namespace DataAccess.Entities;
 
-public class UsersProfilesEntity
+public class ProfilesEntity
 {
     public Guid UserId { get; set; }
     

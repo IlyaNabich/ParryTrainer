@@ -4,14 +4,14 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DataAccess.Configurations;
 
-public class UserProfileConfiguration : IEntityTypeConfiguration<UsersProfilesEntity>
+public class UserProfileConfiguration : IEntityTypeConfiguration<ProfilesEntity>
 {
-    public void Configure(EntityTypeBuilder<UsersProfilesEntity> builder)
+    public void Configure(EntityTypeBuilder<ProfilesEntity> builder)
     {
         builder.HasKey(x => x.UserId);
 
             builder.HasMany(x => x.CommentsEntity)
-                .WithOne(x => x.UsersProfilesEntity)
+                .WithOne(x => x.ProfilesEntity)
                 .HasForeignKey(x => x.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
     }

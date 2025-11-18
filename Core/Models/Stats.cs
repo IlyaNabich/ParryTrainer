@@ -1,9 +1,9 @@
 ﻿
 namespace Core.Models;
 
-public class UsersStats
+public class Stats
 {
-    private UsersStats(Guid userId)
+    private Stats(Guid userId)
     {
         UserId = userId;
     }
@@ -30,8 +30,8 @@ public class UsersStats
 
     public int BestParryStreak { get; }
 
-    public static UsersStats CreateStats(Guid userId)
+    public static Stats CreateStats(Guid userId)
     {
-        return new UsersStats(userId);
+        return new Stats(userId);
     }
 }

@@ -10,5 +10,5 @@ public class CommentsEntity
     
     public DateTime DateCreated { get; set; } 
     
-    public UsersProfilesEntity UsersProfilesEntity { get; set; }
+    public ProfilesEntity ProfilesEntity { get; set; }
 }

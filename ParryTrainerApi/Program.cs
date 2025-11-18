@@ -15,10 +15,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
-builder.Services.AddScoped<IUsersProfilesRepository, UsersProfilesRepository>();
-builder.Services.AddScoped<IUsersProfilesService, UsersProfilesService>();
-builder.Services.AddScoped<IUsersStatsRepository, UsersStatsRepository>();
-builder.Services.AddScoped<IUsersStatsService, UsersStatsService>();
+builder.Services.AddScoped<IProfilesRepository, ProfilesRepository>();
+builder.Services.AddScoped<IProfilesService, ProfilesService>();
+builder.Services.AddScoped<IStatsRepository, StatsRepository>();
+builder.Services.AddScoped<IStatsService, StatsService>();
 builder.Services.AddScoped<IUserService, UsersService>();
 builder.Services.AddScoped<IUsersRepository, UsersRepository>();
 builder.Services.AddDbContext<ParryTrainerDbContext>(

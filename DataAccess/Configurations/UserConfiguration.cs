@@ -12,15 +12,15 @@ public class UserConfiguration: IEntityTypeConfiguration<UsersEntity>
             .HasKey(x => x.UserId);
 
         builder
-            .HasOne(x => x.UsersStatsEntity)
+            .HasOne(x => x.StatsEntity)
             .WithOne(x => x.UsersEntity)
-            .HasForeignKey<UsersStatsEntity>(x => x.UserId)
+            .HasForeignKey<StatsEntity>(x => x.UserId)
             .OnDelete(DeleteBehavior.Cascade);
 
         builder
-            .HasOne(x => x.UsersProfilesEntity)
+            .HasOne(x => x.ProfilesEntity)
             .WithOne(x => x.UsersEntity)
-            .HasForeignKey<UsersProfilesEntity>(x => x.UserId)
+            .HasForeignKey<ProfilesEntity>(x => x.UserId)
             .OnDelete(DeleteBehavior.Cascade);
 
 
