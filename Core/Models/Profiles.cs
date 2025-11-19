@@ -2,10 +2,9 @@
 
 public class Profiles
 {
-    private Profiles(Guid userId, string userName, string firstName, string lastName, string age, string links, string region, string country, string description)
+    private Profiles(Guid userId, string firstName, string lastName, string age, string links, string region, string country, string description)
     {
         UserId = userId;
-        UserName = userName;
         FirstName = firstName;
         LastName = lastName;
         Age = age;
@@ -15,8 +14,6 @@ public class Profiles
         Description = description;
     }
     public Guid UserId { get; } 
-    
-    public string UserName { get; }
     
     public string FirstName { get; }
     
@@ -32,10 +29,10 @@ public class Profiles
     
     public string Description {  get; }
 
-    public static Profiles CreateProfile(Guid userId, string userName, string firstName, string lastName, 
+    public static Profiles CreateProfile(Guid userId, string firstName, string lastName, 
         string age, string links, string region, string country, string description)
     {
-       return new Profiles(userId, userName,  firstName, lastName, age, links, region, country, description);
+       return new Profiles(userId,  firstName, lastName, age, links, region, country, description);
     }
     
 }

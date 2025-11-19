@@ -1,8 +1,6 @@
 ﻿using Application.Auth;
-using Core.Abstractions;
 using Core.Models;
 using Core.Interfaces;
-using DataAccess.Repository;
 using Microsoft.AspNetCore.Mvc;
 using ParryTrainerApi.Contracts.User;
 
@@ -11,7 +9,7 @@ namespace ParryTrainerApi.Controllers;
 [ApiController]
 [Route("[controller]")]
 
-public class UserController (IUserService userService, IProfilesService profilesService, IStatsService statsService, IPasswordHasher passwordHasher) : ControllerBase
+public class UsersController (IUserService userService, IProfilesService profilesService, IStatsService statsService, IPasswordHasher passwordHasher) : ControllerBase
 {
     [HttpGet]
     public async Task<ActionResult<UsersResponse>> GetUser()
@@ -37,7 +35,6 @@ public class UserController (IUserService userService, IProfilesService profiles
             );
         var profile = Profiles.CreateProfile(
             id,
-            request.Username,
             "Unknown",
             "Unknown",
             "Unknown",

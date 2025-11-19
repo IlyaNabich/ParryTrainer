@@ -8,12 +8,12 @@ namespace ParryTrainerApi.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class UserProfileController (IProfilesService profilesService) : ControllerBase
+public class ProfilesController (IProfilesService profilesService) : ControllerBase
 {
 
 
     [HttpGet]
-    public async Task<ActionResult<UsersProfileResponse>> Get(Guid userId)
+    public async Task<ActionResult<ProfilesResponse>> Get(Guid userId)
     {
         var profile = await profilesService.GetUserProfileAsync(userId);
         
@@ -21,11 +21,10 @@ public class UserProfileController (IProfilesService profilesService) : Controll
     }
 
     [HttpPut]
-    public async Task<ActionResult<UsersProfileResponse>> UpdateProfile([FromBody] ProfileRequest request)
+    public async Task<ActionResult<ProfilesResponse>> UpdateProfile([FromBody] ProfilesRequest request)
     {
         var profileEntity = Profiles.CreateProfile(
             request.userId,
-            request.userName,
             request.firstName,
             request.lastName,
             request.age,
